@@ -16,7 +16,14 @@
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@flashpub/publish": ["./src/index"],
+
+      "@configs": ["./src/configs/index"],
+      "@containers/*": ["./src/containers/*"],
+      "@components/*": ["./src/components/*"],
+      "@services/*": ["./src/services/*"]
+    }
   },
   "include": ["next-env.d.ts", "twin.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "rollup.config.js", "public"]

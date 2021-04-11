@@ -1,0 +1,31 @@
+{
+  "projects": {
+    "dev": "flashpub-dev",
+    "staging": "flashpub-staging-489e3",
+    "prod": "flashpub-67105",
+    "default": "flashpub-dev"
+  },
+  "targets": {
+    "flashpub-dev": {
+      "hosting": {
+        "dev-outbreak": [
+          "dev-outbreak-40001"
+        ]
+      }
+    },
+    "flashpub-staging-489e3": {
+      "hosting": {
+        "staging-outbreak": [
+          "staging-outbreak-40001"
+        ]
+      }
+    },
+    "flashpub-67105": {
+      "hosting": {
+        "outbreak": [
+          "outbreak-40001"
+        ]
+      }
+    }
+  }
+}
