@@ -41,15 +41,31 @@ interface URLQueryProps {
 }
 
 interface CommunityDefinition {
-  name: string;
-  dictionaryId: string;
-  legal?: {
-    [key: string]: Legal;
-  } | null;
+  contentTypes: Record<string, CommunityContentType>;
   createdOn: number;
-  metrics: CommunityMetrics;
-  contentTypes: ContentTypes;
+  dictionaryId: string;
   loadingTaglines: string[];
+  metrics: CommunityMetrics;
+  name: string;
   topSubCommunities: string[];
-  quickReviewTemplates: string[];
+  url: string;
+}
+
+type CommunityDefaultCondition = { name: string; type: any };
+
+interface CommunityMetrics {
+  readonly pubCount: number;
+  readonly userCount: number;
+  readonly subCommunityCount: number;
+}
+interface CommunityContentType {
+  readonly articleType: 'micropub' | 'microreview';
+  readonly claim: CommunityContentClaim;
+  readonly contentTypeLabel: string;
+  readonly defaultConditions: CommunityDefaultCondition[];
+  readonly figureRequired: boolean;
+  readonly info: CommunityContentInfo;
+  readonly order: number;
+  readonly quickReviews: string[];
+  readonly reviewPeriodEnabled: boolean;
 }

@@ -7,25 +7,18 @@ const stateStatus = <T = unknown>(data: T): IState<T> => ({
 });
 
 const communityState = stateStatus<CommunityDefinition | null>(null);
+const contentType = stateStatus<CommunityContentType | null>(null);
 
 const store = {
   community: proxy(communityState),
+  contentType: proxy(contentType),
 };
-
-type S = typeof store;
-type Comm = (data: S['community']['data']) => void;
 
 const operator = {
-  get: store as S,
-  set: {
-    status: (key: keyof S, type: IStatus['type'], msg?: IStatus['msg']) => {
-      store[key].status = { type, msg };
-    },
-    community: (update: Comm) => update(store.community.data),
-  },
-  use: useSnapshot,
+  ...store,
+  watch: useSnapshot,
 };
 
-devtools(proxy(store), 'store');
+if (process.env.NODE_ENV === 'development') devtools(proxy(store), 'store');
 
 export default operator;

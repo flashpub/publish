@@ -2,7 +2,7 @@ import * as React from 'react';
 import tw from 'twin.macro';
 import { useDocument } from '@nandorojo/swr-firestore';
 
-import { cookies, store } from '@services/storage';
+import { store } from '@services/storage';
 
 const StyledDiv = tw.div`flex flex-col items-center justify-center min-h-screen py-2`;
 
@@ -17,7 +17,7 @@ const PublishContainer: React.FC<Props> = ({
   loader,
   error,
 }) => {
-  const storedCommunity = store.use(store.get.community);
+  const storedCommunity = store.watch(store.community);
   const remoteCommunity = useDocument<CommunityDefinition>(
     !storedCommunity.data ? `communities/${community.name}` : null,
   );
@@ -25,15 +25,15 @@ const PublishContainer: React.FC<Props> = ({
   React.useEffect(() => {
     if (!storedCommunity.data) {
       if (remoteCommunity.data && !remoteCommunity.loading) {
-        store.get.community.data = remoteCommunity.data;
-        store.get.community.status.type = 'success';
+        store.community.data = remoteCommunity.data;
+        store.community.status.type = 'success';
       } else {
-        store.get.community.status.type = 'loading';
+        store.community.status.type = 'loading';
       }
     }
     if (remoteCommunity.error) {
-      store.get.community.status.type = 'error';
-      store.get.community.status.msg = remoteCommunity.error;
+      store.community.status.type = 'error';
+      store.community.status.msg = remoteCommunity.error;
     }
   }, [storedCommunity, remoteCommunity]);
 

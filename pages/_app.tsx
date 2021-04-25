@@ -1,9 +1,11 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import { GlobalStyles } from 'twin.macro';
+
 import FlashpubPublish from '@flashpub/publish';
 
 import 'tailwindcss/tailwind.css';
+import '../styles/globals.css';
 
 const Publish = new FlashpubPublish();
 
