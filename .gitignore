@@ -67,3 +67,4 @@ node_modules/
 staging.json
 dist
 example/node_modules
+example/
