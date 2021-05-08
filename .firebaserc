@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "flashpub-dev",
+    "staging": "flashpub-staging-489e3"
+  }
+}

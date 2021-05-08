@@ -1,0 +1,97 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "dictionary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ancestors",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "metrics.pubCount",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dictionary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ancestors",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "metrics.pubCount",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dictionary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ancestors",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "name",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dictionary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ancestors",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "name",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pubs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "metadata.allDictionaryIds",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "metadata.datePublished",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pubs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "metadata.allDictionaryIds",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "metadata.draft.isDraft",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "metadata.datePublished",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

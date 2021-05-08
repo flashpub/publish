@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function getUser(userId){
+      return (userId != null && userId != '') ? get(/databases/$(database)/documents/users/$(userId)).data: null;
+    }
+
+  	function isAdmin(){
+      let user = request.auth != null ? getUser(request.auth.uid): null;
+    	return user != null && user.role != null ? user.role == "Admin" : false;
+    }
+    
+  	match /users/{userId} {
+      allow read, write: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+    }
+    match /affiliations/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /campaigns/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /claims/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /communities/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /dictionary/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /ontology/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /pubs/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /system/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /test/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /api/{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid != null;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

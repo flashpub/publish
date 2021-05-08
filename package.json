@@ -1,63 +1,61 @@
 {
   "name": "flashpub-publish",
   "version": "0.0.1",
-  "description": "This module contains flashpub's components and logic for publish flow",
-  "author": "NorweskiDrwal",
-  "license": "GPL-3.0",
-  "repository": "https://github.com/flashpub/publish.git",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
-  "engines": {
-    "node": ">=10"
-  },
+  "private": true,
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "test": "jest",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.json --max-warnings 0",
+    "fix": "eslint . --ext .ts,.tsx,.js,.jsx,.json --fix & yarn prettier",
+    "prettier": "prettier --config .prettierrc '**/*.{json,js,jsx,ts,tsx,css,scss,md}' --write"
   },
-  "peerDependencies": {
-    "react": "^16.8.0"
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "next": "latest",
+    "react": "^17.0.1",
+    "react-collapsible": "^2.8.3",
+    "react-dom": "^17.0.1",
+    "react-select": "^4.3.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^25.1.4",
-    "@types/node": "^12.12.38",
-    "@types/react": "^16.9.27",
-    "@types/react-dom": "^16.9.7",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "microbundle-crl": "^0.13.10",
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-proposal-decorators": "^7.13.15",
+    "@types/jest": "^26.0.23",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "autoprefixer": "^10.0.4",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "firebase": "^8.4.2",
+    "husky": "^6.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "jest-watch-typeahead": "^0.6.3",
+    "lint-staged": "^10.5.4",
+    "postcss": "^8.1.10",
+    "prettier": "^2.2.1",
+    "react-query": "^3.15.2",
+    "react-test-renderer": "^17.0.2",
+    "reflect-metadata": "^0.1.13",
+    "tailwindcss": "^2.1.1",
+    "typescript": "^4.2.4",
+    "valtio": "^1.0.4"
   },
-  "files": [
-    "dist"
-  ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{json,js,jsx,ts,tsx,css,scss,md}": "prettier --config .prettierrc --write",
+    "*.{ts,tsx,js,jsx,json}": "eslint --cache --max-warnings 0"
+  }
 }

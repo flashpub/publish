@@ -1,0 +1,20 @@
+* {
+  outline: none;
+}
+
+:root {
+  --eq-green: #176953;
+  --eq-cyan: #86fede;
+  --eq-light: #f5f5f5;
+  --eq-yellow: #ddfe72;
+  --eq-gold: #fdc837;
+  --eq-pink: #fd376c;
+  --eq-purple: #371e89;
+  --eq-dark: #0d1117;
+  --eq-text-display: 'Abril Fatface';
+  --eq-text-body: 'Poppins';
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
