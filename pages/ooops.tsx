@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Store } from 'src/modules/storage.module';
+import { Button } from 'src/ui/Button';
 
 export default function Ooops() {
   const router = useRouter();
@@ -23,18 +24,8 @@ export default function Ooops() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       {msg}
-      <button
-        className="flex items-center justify-center border-2 px-4 py-2 rounded-lg hover:bg-blue-200"
-        onClick={onAgain}
-      >
-        Sign in
-      </button>
-      <button
-        className="flex items-center justify-center border-2 px-4 py-2 rounded-lg hover:bg-blue-200"
-        onClick={onHome}
-      >
-        Home
-      </button>
+      <Button onClick={onAgain} label="Sign in" />
+      <Button onClick={onHome} label="Home" />
     </div>
   );
 }

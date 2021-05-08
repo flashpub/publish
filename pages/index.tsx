@@ -10,10 +10,12 @@ export default function Index() {
   const cert = Store.react(Store.certificate);
 
   const onSignin = () => {
+    Store.certificate.redirect = undefined;
     router.push('/signin');
   };
 
   const onPublish = () => {
+    Store.certificate.redirect = undefined;
     router.push('/publish');
   };
 
