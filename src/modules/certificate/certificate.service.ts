@@ -28,7 +28,6 @@ export const Certify = {
       );
       Store.certificate.data = Certify.createCertificate(resp.user);
       Store.certificate.status = 'success';
-      Store.certificate.redirect = ['/'];
     } catch (e) {
       Store.certificate.status = 'error';
       Store.certificate.redirect = [`/ooops?error=${e.message}`, '/ooops'];

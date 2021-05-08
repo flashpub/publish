@@ -9,6 +9,7 @@ import { Certify } from './certificate.service';
 export const CertificateGuard: React.FC = ({ children }) => {
   const router = useRouter();
   const cert = Store.react(Store.certificate);
+  const path = router.pathname;
 
   React.useEffect(() => {
     if (typeof cert.data === 'undefined') {
@@ -16,10 +17,12 @@ export const CertificateGuard: React.FC = ({ children }) => {
       Backend.Auth().onAuthStateChanged((user) => {
         Store.certificate.data = Certify.createCertificate(user);
         Store.certificate.status = 'idle';
-        if (!user) router.push('/signin');
+        if (!user) {
+          router.push(`/signin?from=${path}`, '/signin');
+        }
       });
     }
-  }, [cert.data, router]);
+  }, [cert.data, path, router]);
 
   return <>{children}</>;
 };

@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { Store } from 'src/modules/storage.module';
 import { Certify } from 'src/modules/certificate/certificate.service';
 import { Loading } from 'src/ui/Loading';
+import { Button } from 'src/ui/Button';
+import { Logo } from 'src/ui/Logo';
 
 export default function SignIn() {
   const router = useRouter();
@@ -17,7 +19,8 @@ export default function SignIn() {
   const onEmail = (e: any) => setEmail(e.target.value);
 
   React.useEffect(() => {
-    if (cert.data) router.push('/');
+    console.log('SignIn router', router);
+    if (cert.data) router.push(`/?from=${router.query.from}`, '/');
   }, [cert.data, router]);
 
   React.useEffect(() => {
@@ -34,24 +37,23 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <Logo symbol="fp" />
+      <p>Sign in to your flashpub account in order to continue</p>
       <input
+        className="border-2 px-4 py-2 rounded-lg my-2"
         type="email"
         value={email}
         onChange={onEmail}
         placeholder="email"
       />
       <input
+        className="border-2 px-4 py-2 rounded-lg mb-2"
         value={pass}
         type="password"
         onChange={onPass}
         placeholder="password"
       />
-      <button
-        className="flex items-center justify-center border-2 px-4 py-2 rounded-lg hover:bg-blue-200"
-        onClick={onSubmit}
-      >
-        Sign in
-      </button>
+      <Button onClick={onSubmit} label="Sign in" />
     </div>
   );
 }

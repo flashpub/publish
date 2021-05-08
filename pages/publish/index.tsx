@@ -17,6 +17,7 @@ export default function Publish() {
   const selectedContent = Store.react(Store.selectedContent);
 
   React.useEffect(() => {
+    console.log('Publish router', router);
     if (cert.redirect) {
       router.push(cert.redirect[0], cert.redirect[1]);
     }
